@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/forkJoin';
 
 const baseUrl = 'https://api.github.com/repos/telerik/kendo-ui-core/issues';
 
@@ -11,7 +12,7 @@ export class GithubService {
         // Generate your own token through
         // https://github.com/settings/tokens
 
-        'Authorization': "token b95116792cba5a8169a1ec10640d8c16535c6419"
+        'Authorization': 'token b95116792cba5a8169a1ec10640d8c16535c6419'
     });
     constructor(public http: Http) { }
 

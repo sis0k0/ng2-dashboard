@@ -1,8 +1,8 @@
 import { Component, ViewEncapsulation, NgModule, HostBinding } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-import { GithubService } from './../shared/github.service'
-import { IssuesProcessor } from './../shared/issues-processor.service'
+import { GithubService } from './../shared/github.service';
+import { IssuesProcessor } from './../shared/issues-processor.service';
 
 
 import { IssueTypesComponent } from '../charts/issue-types.component';
@@ -11,12 +11,10 @@ import { ActiveIssuesComponent } from '../charts/active-issues.component';
 import { StatisticsComponent } from '../charts/statistics.component';
 
 import { IssuesModel } from './../shared/issues.model';
-import { ChartsModule } from '@progress/kendo-angular-charts';
-import { ButtonsModule } from '@progress/kendo-angular-buttons';
-import { LayoutModule } from '@progress/kendo-angular-layout';
-import { Observable, Subscription } from 'rxjs/Rx';
-
-import 'hammerjs';
+import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
+import 'rxjs/add/observable/of';
+// import 'hammerjs';
 
 @Component({
     moduleId: module.id,
@@ -29,13 +27,13 @@ export class DashboardComponent {
     public today: Date = new Date();
     public rangeStart: Date;
     private issues: any;
-    private months: number = 3;
+    private months = 3;
     private data: any;
     private subscription: Subscription;
-    private selectedIndex: number = 0;
+    private selectedIndex = 0;
 
-    @HostBinding('attr.id') get get_id() { return "dashboard"; }
-    @HostBinding('class') get get_class() { return "dashboard"; }
+    @HostBinding('attr.id') get get_id() { return 'dashboard'; }
+    @HostBinding('class') get get_class() { return 'dashboard'; }
 
     constructor(public githubService: GithubService, public issuesProcessor: IssuesProcessor) {
         this.rangeStart = this.issuesProcessor.getMonthsRange(this.months);
@@ -44,11 +42,11 @@ export class DashboardComponent {
             .getGithubIssues({pages: 14})
             .map(data => {
                 this.data = data;
-                return this.issuesProcessor.process(data, this.months)
+                return this.issuesProcessor.process(data, this.months);
             })
             .merge(Observable.of(new IssuesModel()))
             .subscribe((data: IssuesModel) => {
-                this.issues = data
+                this.issues = data;
             });
     }
 
@@ -76,16 +74,16 @@ export class DashboardComponent {
                 this.selectedIndex = 0;
                 break;
             case 1 :
-                const assigned = this.issuesProcessor.flatten(this.data).filter(item => item.assignee ? item.assignee.login === 'ggkrustev' : false)
-                this.issues = this.issuesProcessor.process(assigned, this.months)
+                const assigned = this.issuesProcessor.flatten(this.data).filter(item => item.assignee ? item.assignee.login === 'ggkrustev' : false);
+                this.issues = this.issuesProcessor.process(assigned, this.months);
                 this.selectedIndex = 1;
                 break;
             case 2 :
                 const created = this.issuesProcessor.flatten(this.data).filter(item => item.user.login === 'ggkrustev');
-                this.issues = this.issuesProcessor.process(created, this.months)
+                this.issues = this.issuesProcessor.process(created, this.months);
                 this.selectedIndex = 2;
                 break;
-            default : this.issues = this.issuesProcessor.process(this.data, this.months);;
+            default : this.issues = this.issuesProcessor.process(this.data, this.months); ;
         }
     }
 }

@@ -3,8 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Http, HttpModule } from '@angular/http';
 // vendor dependencies
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+// import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+// import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 // app
 import { Config } from './common/index';
 import { AppComponent } from './app.component';
@@ -33,9 +33,9 @@ import { StatisticsComponent } from './charts/statistics.component';
 
 Config.PLATFORM_TARGET = Config.PLATFORMS.WEB;
 
-export function createTranslateLoader(http: Http) {
-    return new TranslateHttpLoader(<any>http, './assets/i18n/', '.json');
-}
+// export function createTranslateLoader(http: Http) {
+//     return new TranslateHttpLoader(<any>http, './assets/i18n/', '.json');
+// }
 
 @NgModule({
     declarations: [
@@ -62,13 +62,13 @@ export function createTranslateLoader(http: Http) {
         BrowserAnimationsModule,
         LayoutModule,
         HttpModule,
-        TranslateModule.forRoot({
-            loader: {
-                provide: TranslateLoader,
-                useFactory: (createTranslateLoader),
-                deps: [Http]
-            }
-        }),
+        // TranslateModule.forRoot({
+        //     loader: {
+        //         provide: TranslateLoader,
+        //         useFactory: (createTranslateLoader),
+        //         deps: [Http]
+        //     }
+        // }),
         ...SHARED_MODULES
     ],
     providers: [],
