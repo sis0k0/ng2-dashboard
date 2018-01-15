@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { GithubService } from './../shared/github.service';
-import { IssuesProcessor } from './../shared/issues-processor.service';
+import { GithubService } from './../../shared/github.service';
+import { IssuesProcessor } from './../../shared/issues-processor.service';
 // import { RouterExtensions } from 'nativescript-angular/router';
-import { Issue } from './../shared/issues.model';
+import { Issue } from './../../shared/issues.model';
 // import { Page } from 'ui/page';
 
 @Component({
@@ -13,6 +13,7 @@ import { Issue } from './../shared/issues.model';
   encapsulation: ViewEncapsulation.None
 })
 export class IssueDetailComponent implements OnInit {
+  id: number;
   issue: Issue;
   isTruncating = true;
 
@@ -30,9 +31,9 @@ export class IssueDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    const id = +this.route.snapshot.params['id'];
+    this.id = +this.route.snapshot.params['id'];
 
-    this.githubService.getGithubIssue(id).toPromise().then((data) => {
+    this.githubService.getGithubIssue(this.id).toPromise().then((data) => {
       // this.page.actionBarHidden = false;
       this.issue = IssuesProcessor.mapIssue(data);
     });

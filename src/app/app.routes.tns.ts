@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { ProfileComponent } from './profile';
 import { SigninComponent } from './signin';
 /**
  * Define app module routes here, e.g., to lazily load a module
@@ -8,19 +7,19 @@ import { SigninComponent } from './signin';
 export const AppRoutes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: '/signin' },
     // { path: '', pathMatch: 'full', redirectTo: '/issues' },
+    // { path: '', pathMatch: 'full', redirectTo: '/issues/detail/33' },
     // { path: '', pathMatch: 'full', redirectTo: '/dashboard' },
     // { path: '', pathMatch: 'full', redirectTo: '/profile' },
-    // { path: '', pathMatch: 'full', redirectTo: '/issues/detail/33' },
     { path: 'signin',  component: SigninComponent },
     {
         path: 'profile',
-        loadChildren: 'app/profile/profile.module#ProfileModule' },
+        loadChildren: '~/app/profile/profile.module#ProfileModule' },
     {
         path: 'issues',
-        loadChildren: 'app/issues/issues.module#IssuesModule'
+        loadChildren: '~/app/issues/issues.module#IssuesModule'
     },
     {
         path: 'dashboard',
-        loadChildren: 'app/dashboard/dashboard.module#DashboardModule'
+        loadChildren: '~/app/dashboard/dashboard.module#DashboardModule'
     },
 ];

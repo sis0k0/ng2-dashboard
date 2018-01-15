@@ -17,10 +17,12 @@ export class SigninComponent {
     }
 
     @HostBinding('class') protected get appClass(): string {
-        return 'signin'
+        return 'signin';
     }
 
     public onLoginClick() {
-        this.router.navigate(['/dashboard']);
+        // this.router.navigate(['/dashboard']);
+        // this.router.navigate(['/issues']);
+        this.router.navigate(['/profile']);
     }
 }

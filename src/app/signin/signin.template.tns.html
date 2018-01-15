@@ -1,3 +1,25 @@
-<StackLayout>
-    <Label text="Signin" textWrap="true"></Label>
+<ActionBar title="Signin" backgroundColor="black">
+</ActionBar>
+
+<StackLayout class="m-5">
+
+	<Label text="ISSUES" class="h1 text-center"></Label>
+	<Label text="SAMPLE DASHBOARD" class="h3 text-center"></Label>
+
+  <Label text="Email or Username" class="h2"></Label>
+  <TextField
+    hint="Email or Username...">
+  </TextField>
+
+  <Label text="password" class="h2"></Label>
+  <TextField
+    hint="password..."
+    secure="true">
+  </TextField>
+
+  <Button 
+    text="Log in"
+    (tap)="onLoginClick()"
+    class="btn btn-rounded-lg btn-primary">
+  </Button>
 </StackLayout>

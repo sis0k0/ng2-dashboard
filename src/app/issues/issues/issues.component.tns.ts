@@ -4,10 +4,10 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import 'rxjs/add/observable/combineLatest';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/map';
 
-import { GithubService } from './../shared/github.service';
-import { IssuesProcessor } from './../shared/issues-processor.service';
-import { prompt } from 'ui/dialogs';
+import { GithubService } from './../../shared/github.service';
+import { IssuesProcessor } from './../../shared/issues-processor.service';
 
 export interface Label {
     name: string;
@@ -43,7 +43,7 @@ export interface Issue {
 @Component({
     moduleId: module.id,
     selector: 'issues',
-    templateUrl: './issues.template.html'
+    templateUrl: './issues.component.html'
 })
 export class IssuesComponent {
     loading = true;
